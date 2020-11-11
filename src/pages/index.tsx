@@ -14,7 +14,7 @@ const Spec: React.FC = () => {
   // 已选择的规格，长度为规格列表的长度
   const [specsS, setSpecsS] = useState(Array(specList.length).fill(''))
 
-  // 创建一个规格矩阵
+  // 创建一个规格矩阵(只有在specList, specCombinationList发生变化的时候才会执行里面的函数)
   const specAdjoinMatrix = useMemo(
     () => new SpecAdjoinMatrix(specList, specCombinationList),
     [specList, specCombinationList]
@@ -22,6 +22,7 @@ const Spec: React.FC = () => {
 
   // 获得可选项表
   const optionSpecs = specAdjoinMatrix.getSpecscOptions(specsS)
+  // console.log(optionSpecs)
 
   const handleClick = function (bool: boolean, text: string, index: number) {
     // 排除可选规格里面没有的规格
